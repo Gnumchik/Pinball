@@ -22,6 +22,10 @@ public class BallsSpawn : MonoBehaviour
         {
             SceneManager.LoadScene(1);
         }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -31,6 +35,12 @@ public class BallsSpawn : MonoBehaviour
             transform.position = new Vector3(3.126f, -0.046f, -2.145f);
             hp--;
         }
+        if (other.gameObject.tag == "Bonuse")
+        {
+            Destroy(other.gameObject);
+            chet += 1000;
+            text.text = chet.ToString();
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -39,9 +49,26 @@ public class BallsSpawn : MonoBehaviour
         {
             CapsuleCollider sphereCollider = collision.gameObject.GetComponent<CapsuleCollider>();
             sphereCollider.material.bounceCombine = PhysicMaterialCombine.Maximum;
-            chet++;
+            chet += 10;
             text.text = chet.ToString();
         }
+        
+        if (collision.gameObject.tag == "obstcleBig")
+        {
+            CapsuleCollider sphereCollider = collision.gameObject.GetComponent<CapsuleCollider>();
+            sphereCollider.material.bounceCombine = PhysicMaterialCombine.Maximum;
+            chet += 100;
+            text.text = chet.ToString();
+        }
+        if (collision.gameObject.tag == "obsteclBigBig")
+        {
+            CapsuleCollider sphereCollider = collision.gameObject.GetComponent<CapsuleCollider>();
+            sphereCollider.material.bounceCombine = PhysicMaterialCombine.Maximum;
+            chet += 500;
+            text.text = chet.ToString();
+        }
+
+
 
     }
     private void OnCollisionExit(Collision collision)
@@ -51,8 +78,19 @@ public class BallsSpawn : MonoBehaviour
             CapsuleCollider sphereCollider = collision.gameObject.GetComponent<CapsuleCollider>();
             sphereCollider.material.bounceCombine = PhysicMaterialCombine.Minimum;
         }
-
+        if (collision.gameObject.tag == "obstcleBig")
+        {
+            CapsuleCollider sphereCollider = collision.gameObject.GetComponent<CapsuleCollider>();
+            sphereCollider.material.bounceCombine = PhysicMaterialCombine.Minimum;
+        }
+        if (collision.gameObject.tag == "obsteclBigBig")
+        {
+            CapsuleCollider sphereCollider = collision.gameObject.GetComponent<CapsuleCollider>();
+            sphereCollider.material.bounceCombine = PhysicMaterialCombine.Minimum;
+        }
     }
+
+    
 }
 
 
