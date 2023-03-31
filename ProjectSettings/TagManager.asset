@@ -9,6 +9,7 @@ TagManager:
   - obstcleBig
   - obsteclBigBig
   - Bonuse
+  - Ball
   layers:
   - Default
   - TransparentFX

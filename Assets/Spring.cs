@@ -4,30 +4,40 @@ using UnityEngine;
 
 public class Spring : MonoBehaviour
 {
-    [SerializeField] private GameObject spring;
+    [SerializeField] private float strengthMax;
+    [SerializeField] private float strengthPlus;
 
-    private SpringJoint springJoint;
+    //[SerializeField] private Spring _spring;
 
-    void Start()
+    private float _totalStrength;
+    private Rigidbody ballRb;
+
+    private void Update()
     {
-        springJoint = spring.GetComponent<SpringJoint>() ;    
-    }
-
-    void Update()
-    {
-
         if (Input.GetKey(KeyCode.Space))
-        {
-            if(springJoint.minDistance <= 4)
-            {
-                springJoint.minDistance += 0.05f;
-            }
-            //transform.position = new Vector3(3.09f, -2.478f, -5.204f);
-        }
+            AddStrength();
 
         if (Input.GetKeyUp(KeyCode.Space))
-        {
-            springJoint.minDistance = 0;
-        }
+            Release();
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ball"))
+            ballRb = collision.gameObject.GetComponent<Rigidbody>();
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ball"))
+            ballRb = null;
+    }
+
+    public void AddStrength()
+    {
+        if (_totalStrength < strengthMax)
+            _totalStrength += strengthPlus;
+    }
+
+    public void Release() => ballRb?.AddForce(0, _totalStrength, 0, ForceMode.Impulse);
 }

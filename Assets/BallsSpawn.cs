@@ -10,10 +10,12 @@ public class BallsSpawn : MonoBehaviour
     [SerializeField] private int chet = 0;
     [SerializeField] private int hp = 3;
     [SerializeField] private TextMeshProUGUI text;
+    private Vector3 startPosition;
 
     void Start()
     {
         text.text = chet.ToString();
+        startPosition = transform.position;
     }
 
     void Update()
@@ -32,7 +34,7 @@ public class BallsSpawn : MonoBehaviour
     {
         if (other.tag == "TrigerrZoneDed")
         {
-            transform.position = new Vector3(3.126f, -0.046f, -2.145f);
+            transform.position = startPosition;
             hp--;
         }
         if (other.gameObject.tag == "Bonuse")
