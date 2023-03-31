@@ -10,11 +10,12 @@ public class BallsSpawn : MonoBehaviour
     [SerializeField] private int chet = 0;
     [SerializeField] private int hp = 3;
     [SerializeField] private TextMeshProUGUI text;
+    [SerializeField] private TextMeshProUGUI textHp;
     private Vector3 startPosition;
 
     void Start()
     {
-        text.text = chet.ToString();
+        text.text = "Money: " + chet.ToString();
         startPosition = transform.position;
     }
 
@@ -36,12 +37,13 @@ public class BallsSpawn : MonoBehaviour
         {
             transform.position = startPosition;
             hp--;
+            textHp.text = "Balls: " + hp.ToString();
         }
         if (other.gameObject.tag == "Bonuse")
         {
             Destroy(other.gameObject);
             chet += 1000;
-            text.text = chet.ToString();
+            text.text = "Money: " + chet.ToString();
         }
     }
 
@@ -52,7 +54,7 @@ public class BallsSpawn : MonoBehaviour
             CapsuleCollider sphereCollider = collision.gameObject.GetComponent<CapsuleCollider>();
             sphereCollider.material.bounceCombine = PhysicMaterialCombine.Maximum;
             chet += 10;
-            text.text = chet.ToString();
+            text.text = "Money: " + chet.ToString();
         }
         
         if (collision.gameObject.tag == "obstcleBig")
@@ -60,14 +62,14 @@ public class BallsSpawn : MonoBehaviour
             CapsuleCollider sphereCollider = collision.gameObject.GetComponent<CapsuleCollider>();
             sphereCollider.material.bounceCombine = PhysicMaterialCombine.Maximum;
             chet += 100;
-            text.text = chet.ToString();
+            text.text = "Money: " + chet.ToString();
         }
         if (collision.gameObject.tag == "obsteclBigBig")
         {
             CapsuleCollider sphereCollider = collision.gameObject.GetComponent<CapsuleCollider>();
             sphereCollider.material.bounceCombine = PhysicMaterialCombine.Maximum;
             chet += 500;
-            text.text = chet.ToString();
+            text.text = "Money: " + chet.ToString();
         }
 
 
