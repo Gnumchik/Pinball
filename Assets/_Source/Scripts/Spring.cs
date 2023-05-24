@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Spring : MonoBehaviour
 {
-    [SerializeField] private float strengthMax;
-    [SerializeField] private float strengthPlus;
+    private float _strengthMax;
+    private float _strengthPlus;
 
     //[SerializeField] private Spring _spring;
 
@@ -35,9 +35,16 @@ public class Spring : MonoBehaviour
 
     public void AddStrength()
     {
-        if (_totalStrength < strengthMax)
-            _totalStrength += strengthPlus;
+        if (_totalStrength < _strengthMax)
+            _totalStrength += _strengthPlus;
     }
 
     public void Release() => ballRb?.AddForce(0, _totalStrength, 0, ForceMode.Impulse);
+
+
+    public void Construct(float strengthMax, float strengthPlus)
+    {
+        _strengthMax = strengthMax;
+        _strengthPlus = strengthPlus;
+    }
 }

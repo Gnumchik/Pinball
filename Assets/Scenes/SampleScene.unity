@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.048811056, g: 0.049108364, b: 0.048811056, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1761,7 +1761,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 826521039}
   m_LocalRotation: {x: -0.31796703, y: -0, z: -0, w: 0.9481018}
-  m_LocalPosition: {x: -2.37, y: 1.18494, z: 5.434401}
+  m_LocalPosition: {x: -2.37, y: 2.061, z: 6.594}
   m_LocalScale: {x: 0.8851, y: 0.42326963, z: 0.8851}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2604,11 +2604,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85de1a8bd8ba2794998adbed6cc4ca9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  restPosition: 0
-  pressedPOsition: -45
-  hitStrenght: 1e+9
-  flipperDamper: 150
-  inputName: LFlipper
 --- !u!59 &1218051170
 HingeJoint:
   m_ObjectHideFlags: 0
@@ -3344,8 +3339,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bac6a4ce8d14b0a43be4f1b402ac72c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strengthMax: 0
-  strengthPlus: 0
 --- !u!1 &1750741290
 GameObject:
   m_ObjectHideFlags: 0
@@ -3394,8 +3387,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bac6a4ce8d14b0a43be4f1b402ac72c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strengthMax: 0
-  strengthPlus: 0
 --- !u!54 &1750741293
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3503,7 +3494,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1784815128}
   m_LocalRotation: {x: -0.31796703, y: -0, z: -0, w: 0.9481018}
-  m_LocalPosition: {x: -1.211, y: 0.38483995, z: 4.158601}
+  m_LocalPosition: {x: -1.211, y: 0.81, z: 4.72}
   m_LocalScale: {x: 0.8851, y: 0.42326963, z: 0.8851}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3621,11 +3612,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85de1a8bd8ba2794998adbed6cc4ca9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  restPosition: 0
-  pressedPOsition: 45
-  hitStrenght: 1e+9
-  flipperDamper: 150
-  inputName: RFlipper
 --- !u!59 &1800732269
 HingeJoint:
   m_ObjectHideFlags: 0
@@ -3912,7 +3898,7 @@ GameObject:
   - component: {fileID: 1965184840}
   - component: {fileID: 1965184839}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3930,15 +3916,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a4b926f35068e041b7e904c31cffe2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bonuse:
-  - {fileID: 4829162234409381672, guid: 1dd3a5cd5edb57345ac575e0c679b001, type: 3}
-  spawnPoints:
-  - {fileID: 280545373}
-  - {fileID: 1831801963}
-  - {fileID: 1229748686}
-  - {fileID: 308276094}
-  - {fileID: 44382097}
-  - {fileID: 264173184}
 --- !u!4 &1965184840
 Transform:
   m_ObjectHideFlags: 0
@@ -4002,8 +3979,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bac6a4ce8d14b0a43be4f1b402ac72c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strengthMax: 0
-  strengthPlus: 0
 --- !u!54 &2019494458
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4570,5 +4545,69 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bac6a4ce8d14b0a43be4f1b402ac72c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2103962475
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2103962477}
+  - component: {fileID: 2103962476}
+  m_Layer: 0
+  m_Name: Bootstrap
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2103962476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2103962475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcb45981e584e174ab3ed6e89a58d310, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  restPosition: 0
+  pressedPOsition: -100
+  pressedPOsitionTow: 100
+  hitStrenght: 10000
+  flipperDamper: 150
+  inputName: LFlipper
+  inputNameTow: RFlipper
+  flipper: {fileID: 1218051169}
+  flipperTow: {fileID: 1800732268}
+  bonuse:
+  - {fileID: 4829162234409381672, guid: 1dd3a5cd5edb57345ac575e0c679b001, type: 3}
+  spawnPoints:
+  - {fileID: 280545373}
+  - {fileID: 1831801963}
+  - {fileID: 1229748686}
+  - {fileID: 308276094}
+  - {fileID: 44382097}
+  - {fileID: 264173184}
+  bonuseRndSpawn: {fileID: 1965184839}
   strengthMax: 35
   strengthPlus: 5
+  spring: {fileID: 2067847376}
+--- !u!4 &2103962477
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2103962475}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.4909165, y: 4.5881195, z: 12.373453}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
