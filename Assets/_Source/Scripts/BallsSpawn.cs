@@ -11,12 +11,27 @@ public class BallsSpawn : MonoBehaviour
     [SerializeField] private int hp = 3;
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private TextMeshProUGUI textHp;
+
+    [SerializeField] private LayerMask trigerrZoneDed;
+    [SerializeField] private LayerMask bonuse;
+    [SerializeField] private LayerMask obstcle;
+
+
+    private int _trigerrZoneDed;
+    private int _bonuse;
+    private int _obstcle;
+
+
     private Vector3 startPosition;
 
     void Start()
     {
         text.text = "Money: " + chet.ToString();
         startPosition = transform.position;
+
+        _trigerrZoneDed = (int)Mathf.Log(trigerrZoneDed.value, 2);
+        _bonuse = (int)Mathf.Log(bonuse.value, 2);
+        _obstcle = (int)Mathf.Log(obstcle.value, 2);
     }
 
     void Update()
@@ -33,13 +48,13 @@ public class BallsSpawn : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "TrigerrZoneDed")
+        if (other.gameObject.layer == _trigerrZoneDed)
         {
             transform.position = startPosition;
             hp--;
             textHp.text = "Balls: " + hp.ToString();
         }
-        if (other.gameObject.tag == "Bonuse")
+        if (other.gameObject.layer == _bonuse)
         {
             Destroy(other.gameObject);
             chet += 1000;
@@ -49,52 +64,32 @@ public class BallsSpawn : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "obstcle")
+        if (collision.gameObject.layer == _obstcle)
         {
-            CapsuleCollider sphereCollider = collision.gameObject.GetComponent<CapsuleCollider>();
-            sphereCollider.material.bounceCombine = PhysicMaterialCombine.Maximum;
-            chet += 10;
-            text.text = "Money: " + chet.ToString();
+            ObstleChetScore(collision);
         }
-        
-        if (collision.gameObject.tag == "obstcleBig")
-        {
-            CapsuleCollider sphereCollider = collision.gameObject.GetComponent<CapsuleCollider>();
-            sphereCollider.material.bounceCombine = PhysicMaterialCombine.Maximum;
-            chet += 100;
-            text.text = "Money: " + chet.ToString();
-        }
-        if (collision.gameObject.tag == "obsteclBigBig")
-        {
-            CapsuleCollider sphereCollider = collision.gameObject.GetComponent<CapsuleCollider>();
-            sphereCollider.material.bounceCombine = PhysicMaterialCombine.Maximum;
-            chet += 500;
-            text.text = "Money: " + chet.ToString();
-        }
-
-
-
     }
     private void OnCollisionExit(Collision collision)
     {
-        if(collision.gameObject.tag == "obstcle")
+        if(collision.gameObject.layer == _obstcle)
         {
-            CapsuleCollider sphereCollider = collision.gameObject.GetComponent<CapsuleCollider>();
-            sphereCollider.material.bounceCombine = PhysicMaterialCombine.Minimum;
-        }
-        if (collision.gameObject.tag == "obstcleBig")
-        {
-            CapsuleCollider sphereCollider = collision.gameObject.GetComponent<CapsuleCollider>();
-            sphereCollider.material.bounceCombine = PhysicMaterialCombine.Minimum;
-        }
-        if (collision.gameObject.tag == "obsteclBigBig")
-        {
-            CapsuleCollider sphereCollider = collision.gameObject.GetComponent<CapsuleCollider>();
-            sphereCollider.material.bounceCombine = PhysicMaterialCombine.Minimum;
+            Reset(collision);
         }
     }
 
-    
+    private void Reset(Collision collision)
+    {
+        CapsuleCollider sphereCollider = collision.gameObject.GetComponent<CapsuleCollider>();
+        sphereCollider.material.bounceCombine = PhysicMaterialCombine.Minimum;
+    }
+
+    private void ObstleChetScore(Collision collision)
+    {
+        CapsuleCollider sphereCollider = collision.gameObject.GetComponent<CapsuleCollider>();
+        sphereCollider.material.bounceCombine = PhysicMaterialCombine.Maximum;
+        chet += collision.gameObject.GetComponent<Obstacle>().GetChet();
+        text.text = "Money: " + chet.ToString();
+    }
 }
 
 

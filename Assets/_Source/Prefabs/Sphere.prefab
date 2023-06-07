@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 481712144914712566}
   - component: {fileID: 5049366555163432153}
   - component: {fileID: 7531969762248280518}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere
   m_TagString: Bonuse
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 4419428290728771165}
   - component: {fileID: 6674584826192714593}
   - component: {fileID: 3357191007753744694}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}

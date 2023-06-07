@@ -5,13 +5,11 @@ using UnityEngine;
 public class Obstacle : MonoBehaviour
 {
     [SerializeField] private float force;
+
+    [SerializeField] private int chet;
     void Start()
     {
         force *= -1;        
-    }
-    void Update()
-    {
-        
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -21,4 +19,6 @@ public class Obstacle : MonoBehaviour
         Vector3 vector = vec / distance;
         collision.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(vector.x * force, vector.y * force, vector.z * force), ForceMode.Impulse);
     }
+
+    public int GetChet() => chet;
 }
