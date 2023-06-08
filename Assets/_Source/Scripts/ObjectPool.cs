@@ -6,32 +6,63 @@ using UnityEngine.Pool;
 
 public class ObjectPool
 {
-    private List<GameObject> _bonuse;
-    private GameObject bonusPrefabs;
+    private List<GameObject> _pool;
+    private GameObject _bonusPrefabs;
 
-    public ObjectPool(int bonuseAmount)
+    public ObjectPool(int bonuseAmount , GameObject prefabsBonus)
     {
-        _bonuse = new List<GameObject>();
-        InitPool(bonuseAmount);
+        _bonusPrefabs = prefabsBonus;
+
+        CreatePool(bonuseAmount);
     }
 
-    private void InitPool(int poolSize)
+    public GameObject GetFreeElement()
     {
-        for (int i = 0; i < poolSize; i++)
+        if(HasFreeElement(out GameObject element))
         {
-            _bonuse.Add(GameObject.Instantiate(bonusPrefabs));
+            return element;
+        }
+        else
+        {
+            return CreaateObject(false);
         }
     }
 
-    public GameObject Get(int index)
+
+    private void CreatePool(int count)
     {
-        return _bonuse[index];
+        _pool = new List<GameObject>();
+        
+        for(int i =0; i < count; i++)
+        {
+            CreaateObject();
+        }
     }
 
-    public void Return(GameObject gameObject)
+    private GameObject CreaateObject(bool isActiveByDefolt = false)
     {
-        _bonuse.Add(gameObject);
+        Debug.Log(_bonusPrefabs);   
+
+        GameObject bonus = GameObject.Instantiate(_bonusPrefabs);
+        _bonusPrefabs.SetActive(isActiveByDefolt);
+        _pool.Add(bonus);
+        return bonus;
     }
 
-    
+    private bool HasFreeElement(out GameObject element)
+    {
+        for(int i = 0; i < _pool.Count; i++)
+        {
+            if (!_pool[i].gameObject.activeInHierarchy)
+            {
+                element = _pool[i];
+                _pool[i].gameObject.SetActive(true);
+
+                return true;
+            }
+        }
+
+        element = null;
+        return false;
+    }
 }

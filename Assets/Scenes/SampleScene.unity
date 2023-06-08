@@ -297,6 +297,7 @@ Transform:
   - {fileID: 1965184840}
   - {fileID: 1221290848}
   - {fileID: 328863659}
+  - {fileID: 1453019938}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: -51.248, y: 0, z: 0}
@@ -3505,6 +3506,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1393472265}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1453019937
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1453019938}
+  m_Layer: 0
+  m_Name: spawnFirs object
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1453019938
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1453019937}
+  m_LocalRotation: {x: 0.43246436, y: -0, z: -0, w: 0.901651}
+  m_LocalPosition: {x: -9.62, y: -8.247485, z: 12.741228}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 40985326}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1533038814
 GameObject:
   m_ObjectHideFlags: 0
@@ -5392,6 +5424,7 @@ MonoBehaviour:
   strengthMax: 35
   strengthPlus: 5
   spring: {fileID: 2067847376}
+  prefabs: {fileID: 4829162234409381672, guid: 1dd3a5cd5edb57345ac575e0c679b001, type: 3}
 --- !u!4 &2103962477
 Transform:
   m_ObjectHideFlags: 0

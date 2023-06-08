@@ -56,7 +56,7 @@ public class BallsSpawn : MonoBehaviour
         }
         if (other.gameObject.layer == _bonuse)
         {
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
             chet += 1000;
             text.text = "Money: " + chet.ToString();
         }
@@ -79,6 +79,7 @@ public class BallsSpawn : MonoBehaviour
 
     private void Reset(Collision collision)
     {
+        //TryGetComponent
         CapsuleCollider sphereCollider = collision.gameObject.GetComponent<CapsuleCollider>();
         sphereCollider.material.bounceCombine = PhysicMaterialCombine.Minimum;
     }

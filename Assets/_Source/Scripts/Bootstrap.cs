@@ -22,11 +22,14 @@ public class Bootstrap : MonoBehaviour
     [SerializeField] private float strengthMax;
     [SerializeField] private float strengthPlus;
     [SerializeField] Spring spring;
+
+    [SerializeField] private GameObject prefabs;
+    
     void Start()
     {
         flipper.Construct(restPosition,pressedPOsition,hitStrenght,flipperDamper,inputName);
         flipperTow.Construct(restPosition, pressedPOsitionTow, hitStrenght, flipperDamper, inputNameTow);
-        bonuseRndSpawn.Construct(bonuse,spawnPoints);
+        bonuseRndSpawn.Construct(bonuse,spawnPoints, prefabs);
         spring.Construct(strengthMax, strengthPlus);
     }
 
